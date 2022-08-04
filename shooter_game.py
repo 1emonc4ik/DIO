@@ -43,10 +43,9 @@ class Player(GameSprite):
             self.rect.y -= self.speed
         if keys[K_DOWN] and self.rect.y < 605:
             self.rect.y += self.speed
-
             
     def fire(self):
-        bullet = Bullet('laser.png', self.rect.centerx, self.rect.top, 10, 25, 10)
+        bullet = Bullet('laser.png', self.rect.centerx, self.rect.top, 10, 40, 10)
         bullets.add(bullet)
 
 class Enemy(GameSprite):
@@ -74,8 +73,6 @@ class Bullet(GameSprite):
         if self.rect.y < 0:
             self.kill()
          
-            
-
 death_star = Player('pngwing.png', 560, 610, 80, 100, 9)
 
 monsters = sprite.Group()
@@ -138,7 +135,7 @@ while game:
             sprite.spritecollide(death_star, monsters, True)
             life -= 1
     
-    text_lose = font1.render('Пропущенo:'+ str(lost), True, (255, 255, 255))
+    text_lose = font1.render('Пропущенo:'+ str(lost) + '|5', True, (255, 255, 255))
     text_win = font2.render('Счёт:'+ str(kills), True, (255, 255, 255))
     lifes = font4.render('Жизней:'+ str(life), True, (255, 255, 255))
     window.blit(text_lose, (10, 60))
@@ -153,6 +150,5 @@ while game:
         finish = True
         window.blit(You_win, (0, 0))
 
-    
     display.update()
     clock.tick(FPS)
